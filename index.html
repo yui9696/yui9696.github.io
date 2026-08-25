@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moe Tabei — Independent Researcher</title>
+<meta name="description" content="Independent researcher: post-quantum cryptography (SQIsign), formal verification (Lean 4 / Mathlib), group rings and the Kaplansky unit conjecture. 14 papers, 4 on arXiv, a DOI-published monograph with a self-verifying artifact bundle.">
+<style>
+  :root {
+    --bg: #ffffff; --fg: #16202a; --muted: #5b6b78; --line: #dde5ea;
+    --accent: #0f6b5c; --accent-soft: #eaf4f1; --card: #f6f9fa; --code: #eef2f4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0e1418; --fg: #e6edf1; --muted: #93a4b0; --line: #223039;
+            --accent: #4fd1b3; --accent-soft: #13312c; --card: #141d23; --code: #1a252c; }
+  }
+  :root[data-theme="dark"] { --bg: #0e1418; --fg: #e6edf1; --muted: #93a4b0; --line: #223039;
+            --accent: #4fd1b3; --accent-soft: #13312c; --card: #141d23; --code: #1a252c; }
+  :root[data-theme="light"] { --bg: #ffffff; --fg: #16202a; --muted: #5b6b78; --line: #dde5ea;
+            --accent: #0f6b5c; --accent-soft: #eaf4f1; --card: #f6f9fa; --code: #eef2f4; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); line-height: 1.65;
+         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+         font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover { border-bottom-color: var(--accent); }
+  code { background: var(--code); padding: 1px 5px; border-radius: 3px;
+         font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; }
+
+  header { padding: 72px 0 28px; }
+  h1 { font-size: clamp(2.1rem, 6vw, 3.1rem); line-height: 1.1; margin: 0 0 12px;
+       letter-spacing: -0.02em; font-weight: 800; }
+  .tagline { font-size: clamp(1.02rem, 2.4vw, 1.22rem); color: var(--muted); margin: 0 0 6px; }
+  .claim { font-size: clamp(1.15rem, 3vw, 1.5rem); font-weight: 700; margin: 26px 0 8px;
+           color: var(--accent); letter-spacing: -0.01em; }
+  .claim-sub { color: var(--muted); margin: 0; max-width: 62ch; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+           gap: 12px; margin: 34px 0 8px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+          padding: 14px 16px; }
+  .stat .n { font-size: 1.75rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+             color: var(--accent); display: block; }
+  .stat .l { font-size: 0.8rem; color: var(--muted); line-height: 1.35; display: block; margin-top: 4px; }
+
+  h2 { font-size: 1.32rem; margin: 52px 0 6px; letter-spacing: -0.01em; font-weight: 750;
+       padding-top: 26px; border-top: 1px solid var(--line); }
+  h2 .kicker { display: block; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+               color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+  h3 { font-size: 1.0rem; margin: 26px 0 4px; font-weight: 700; }
+  p { margin: 0 0 14px; }
+  ul { padding-left: 20px; margin: 0 0 14px; }
+  li { margin-bottom: 7px; }
+  .lead { color: var(--muted); }
+
+  .pull { border-left: 3px solid var(--accent); background: var(--accent-soft);
+          padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+  .pull em { font-style: italic; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 18px; font-size: 0.92rem;
+          display: block; overflow-x: auto; white-space: nowrap; }
+  th, td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--line);
+           vertical-align: top; }
+  th { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+       font-weight: 700; }
+  td.t { white-space: normal; min-width: 260px; }
+
+  .pill { display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em;
+          text-transform: uppercase; padding: 2px 8px; border-radius: 20px;
+          background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+  .pill.q { background: transparent; color: var(--muted); border-color: var(--line); }
+
+  .avail { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+           padding: 22px 24px; margin: 20px 0; }
+  .avail h3 { margin-top: 0; }
+  .contact { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .contact a { border: 1px solid var(--accent); color: var(--accent); border-radius: 8px;
+               padding: 9px 16px; font-weight: 650; font-size: 0.93rem; }
+  .contact a:hover { background: var(--accent); color: var(--bg); }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
+           color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Moe Tabei</h1>
+  <p class="tagline">Independent researcher — post-quantum cryptography · formal verification · group rings.<br>
+  Backend engineer, seven years, production, solo.</p>
+
+  <p class="claim">I make claims that other people can check.</p>
+  <p class="claim-sub">Every result below ships with something executable: a DOI-registered artifact bundle, a DRAT certificate, a constant-time Rust template, a Foundry proof-of-concept, or a script you can re-run on your own machine.</p>
+
+  <div class="stats">
+    <div class="stat"><span class="n">14</span><span class="l">mathematics papers, sole author</span></div>
+    <div class="stat"><span class="n">4</span><span class="l">on arXiv (math.GR)</span></div>
+    <div class="stat"><span class="n">79 pp</span><span class="l">monograph, published with a DOI</span></div>
+    <div class="stat"><span class="n">126</span><span class="l">scripts in the self-verifying bundle</span></div>
+    <div class="stat"><span class="n">10</span><span class="l">SQIsign manuscripts, full stack</span></div>
+    <div class="stat"><span class="n">7 yrs</span><span class="l">production backend, end to end</span></div>
+  </div>
+</header>
+
+<h2><span class="kicker">Mathematics</span>A problem open since 1940, attacked at the radius where it first bites</h2>
+
+<p>The Kaplansky unit conjecture fell in 2021 when Gardam produced a counterexample over <code>F_2</code>. Over the integers — Higman's original question — it is still open. Radius three is closed by known results and the known counterexamples begin at radius four, so <strong>radius four is where an integral statement must first differ from a statement over a field</strong>. My programme is a study of that radius.</p>
+
+<ul>
+  <li><strong>Counted the whole census.</strong> Exactly <strong>52</strong> nontrivial units of <code>F_2[P]</code> are supported in the radius-four ball — and from that, no unit of <code>Z[P]</code> supported in that ball can have nontrivial reduction mod 2, <em>with no bound whatsoever on the coefficients</em>.</li>
+  <li><strong>Measured how far congruence methods reach</strong>, as an increment tower on the radius of the correction, and reformulated it in closed form so that entire congruence strata are decided at once over <code>Z_2</code>.</li>
+  <li><strong>Proved a limit.</strong> Where the mod-2 residue is trivial, no condition on <code>u mod 2^K</code> that is necessary for unit-hood can decide the question — at any radius.</li>
+  <li><strong>Answered a problem of Bartholdi affirmatively</strong> in the twisted-unitary sector, and proved the structure around the witness: a certified obstruction closing radius four, its completeness among <code>σ*</code>-invariant linear obstructions, and a witness mod 8. A compactness theorem then reduces the sector to a single certified lower bound.</li>
+  <li><strong>The characteristic was never the obstruction.</strong> Over any field containing a primitive 8th root of unity, all 52 census classes carry exactly sixteen units; over <code>Q</code> and <code>R</code>, none — certified 52/52. Gardam's sixteen complex units form a single gauge orbit, and the real obstruction is <code>ζ₈</code>.</li>
+</ul>
+
+<div class="pull">
+  <strong>The bundle verifies itself.</strong> Extract the ancillary archive into an empty directory, run <code>python3 src/flagship_numbers_gate.py</code>, and the paper's headline numbers are recomputed from the shipped files alone — including a determinant-criterion check that the 52 census supports really are units. 126 scripts, 415 result files, 9 certificates.
+</div>
+
+<table>
+<tr><th>Status</th><th>Paper</th><th>Identifier</th></tr>
+<tr><td><span class="pill">arXiv</span></td><td class="t">Least sizes of non-unique-product sets: the Promislow group and a Heisenberg-type candidate</td><td><a href="https://arxiv.org/abs/2607.18346">arXiv:2607.18346</a></td></tr>
+<tr><td><span class="pill">arXiv</span></td><td class="t">The quantitative non-unique-product landscape at the global minimum: the Nielsen–Soelberg groups</td><td><a href="https://arxiv.org/abs/2607.19687">arXiv:2607.19687</a></td></tr>
+<tr><td><span class="pill">arXiv</span></td><td class="t">The one-sided unit count of <code>F_2[P]</code> at radius four, and an integral separation theorem</td><td><a href="https://arxiv.org/abs/2608.00103">arXiv:2608.00103</a></td></tr>
+<tr><td><span class="pill">arXiv</span></td><td class="t">Higman in balls: the mod-2 dichotomy for integral units of the Promislow group</td><td><a href="https://arxiv.org/abs/2608.02982">arXiv:2608.02982</a></td></tr>
+<tr><td><span class="pill">DOI</span></td><td class="t"><strong>Integral units of the Promislow group at small radius: dichotomy, counting, towers, and compactness</strong> — 79 pages, with the full artifact bundle</td><td><a href="https://doi.org/10.5281/zenodo.22046587">10.5281/zenodo.22046587</a></td></tr>
+<tr><td><span class="pill q">under review</span></td><td class="t">Localizing the Gardam unit: the support geometry of units in <code>F_2[P]</code> · A compactness theorem for twisted-unitary elements of integral group rings</td><td>arXiv moderation</td></tr>
+<tr><td><span class="pill q">in prep</span></td><td class="t">Twisted-unitary elements modulo 4 in the integral group ring of the Hantzsche–Wendt group — <em>joint with Prof. André Nies (University of Auckland)</em></td><td>verified independently in GAP by both authors</td></tr>
+<tr><td><span class="pill q">written</span></td><td class="t">Machine-checked elimination of taiko branches over the Garg–Mineyev range — all <strong>36/36</strong> cases of branch (A) of a published zero-divisor theorem, machine-certified · The domain question for the Nielsen–Soelberg group rings · three component papers on determinant towers and Galois rigidity</td><td>—</td></tr>
+</table>
+
+<h2><span class="kicker">Cryptography</span>SQIsign, every arithmetic layer, one falsifiable thesis</h2>
+
+<div class="pull"><em>Address- and control-flow constant-time can be achieved and verified at every layer — yet the operand channel remains open at every layer.</em></div>
+
+<p>Ten single-author manuscripts spanning the quaternion-layer Cornacchia routine, the field multiplier, and theta-coordinate normalisation. Measured, not asserted.</p>
+
+<ul>
+  <li><strong>CA-BPN.</strong> Affine normalisation for theta-coordinate (2,2)-isogeny chains, formulated as a scheduling problem and solved with a deterministic cache-budgeted batch-size policy. I stated and proved the correctness conditions for delayed normalisation, implemented a constant-time Rust template with fixed loop bounds and uniform memory access, and benchmarked it on Apple M2. <a href="https://github.com/yui9696/sqisign-cabpn-artifact">Reproduction harness is public.</a></li>
+  <li><strong>Countermeasure costs, measured on the reference implementation.</strong> Exponent blinding (+25%) is ineffective in the model. Per-step re-randomisation (~3.1× overhead) is the only model-validated defence. The reference-free collision setting is isolated as an open problem rather than papered over.</li>
+  <li><strong>A protocol designed to be able to fail.</strong> Stages A–D make the operand-channel thesis falsifiable on hardware, ending in an uncomfortable prediction: trace-equality holds on the board while the power trace still carries operands.</li>
+  <li><strong>New ground:</strong> threshold and distributed SQIsign (three barriers that make group-action techniques non-transferable), and verifier-side fault hardening for IoT — the side that actually receives attacker-controlled input.</li>
+  <li><strong>Bridging back to mathematics:</strong> certified, explicit spectral-gap bounds for the genus-2 superspecial (2,2)-isogeny graph, at the exact parameters SQIsign-family schemes use.</li>
+</ul>
+
+<p class="lead">Core Cornacchia findings were assessed as sound in a technical call with the TU Graz SQIsign group (S. Sinha Roy). The field-multiplier manuscript was revised following detailed review by Ł. Chmielewski (Masaryk University). I am currently seeking a laboratory partner for the hardware-measurement stage.</p>
+
+<h2><span class="kicker">Formal verification</span>A proof submitted to Mathlib, and a verification kernel built from scratch</h2>
+
+<h3>Mathlib — <a href="https://github.com/leanprover-community/mathlib4/pull/42931">leanprover-community/mathlib4 #42931</a></h3>
+<p>Simultaneous diagonalisation of two real quadratic forms, formalised in Lean 4 and submitted to the library itself. +141 lines, no <code>sorry</code>, <code>#print axioms</code> reports the three standard axioms only. A self-audit caught a wrong assumption of mine partway through — the redesign shortened the proof <em>and</em> removed three typeclass hypotheses, generalising the theorem.</p>
+
+<h3>KENSHO — a proof-certificate verification kernel</h3>
+<p>SAT/DRAT can only carry <em>unsatisfiability</em>, and most mathematical claims are not that shape. KENSHO extends one principle — <strong>re-derive the certificate a computation emitted, using a small separate program, rather than trusting its conclusion</strong> — across group theory, linear algebra, polynomials, semidefiniteness and exhaustive search.</p>
+<ul>
+  <li><strong>26 certificate types</strong>: word identities, homomorphisms, complete rewriting systems, Todd–Coxeter coset tables, group-ring product identities, exact rank and kernel, positive semidefiniteness.</li>
+  <li><strong>No floating point anywhere.</strong> Exact arithmetic over <code>Z</code>, <code>Q</code>, <code>GF(p)</code>, <code>Z/n</code>, polynomials and matrices.</li>
+  <li><strong>Generators are deliberately outside the trusted computing base.</strong> TCB held to roughly 1,300 lines, with 50 positive/negative self-tests and a mutation battery that corrupts certificates on purpose to measure where the checker is blind.</li>
+</ul>
+
+<h2><span class="kicker">Engineering</span>Seven years shipping production systems, alone</h2>
+<ul>
+  <li><strong>E-commerce backend, 2019–present.</strong> Sole engineer from requirements elicitation through design, implementation, database optimisation and operations. PHP/Laravel, Python, MySQL/MariaDB, Docker, Linux.</li>
+  <li><strong>LLM audio-briefing product, contract.</strong> TypeScript on serverless with a Postgres job queue (<code>FOR UPDATE SKIP LOCKED</code>, stale-job recovery, retry ceilings); monthly spend caps and double-generation guards written into the spec rather than bolted on; JSON-mode structured output with a stricter-prompt retry and mandatory source URLs; long-form TTS chunked on sentence boundaries for gapless iOS playback. Swift client, TestFlight via GitHub Actions.</li>
+  <li><strong>Streaming research API.</strong> FastAPI SSE with typed progress, partial-result and error events; Lambda/S3/DynamoDB on AWS; JWT and Apple Sign-In; rate limiting.</li>
+  <li><strong>Three TTS stacks implemented and compared</strong> (OpenAI, Google Cloud Neural2 + SSML, Gemini multi-speaker) on naturalness, speaker switching, latency and unit cost — then wired into a fallback chain so one provider's outage cannot stop the pipeline.</li>
+  <li><strong>Smart-contract security.</strong> Independently identified a High-severity design flaw in a StableSwap-style AMM and reproduced it as an executable Foundry sandwich-attack PoC with a parametric loss sweep. <em>(Judged a duplicate of an existing report; I have no confirmed bounty award to date.)</em></li>
+</ul>
+
+<h2><span class="kicker">Method</span>Falsification first</h2>
+<p>I run adversarial audits against my own results <em>before</em> anything is circulated. Two of my own conjectures were refuted and retired this way. What the audits actually catch is instructive:</p>
+<ul>
+  <li><strong>Reading a path is not running it.</strong> I deleted a seed file no claim referenced — and the generator that consumed it silently lost its input. The chain of reasoning was intact; the execution path was dead.</li>
+  <li><strong>Gates check citations, not needs.</strong> A generator no theorem names is never flagged, so a naive gate stays green forever. Fixed by scanning backwards, from shipped artifacts to the procedures that produce them.</li>
+  <li><strong>Fixes introduce new errors.</strong> A sentence repaired during an audit turned out to be false itself. Replacement text now gets re-audited at the same strength.</li>
+  <li><strong>Selection effects.</strong> A set chosen by extremising a statistic cannot be validated by a function of that same statistic. You have to change the instrument.</li>
+</ul>
+<p>Each finding is converted into an invariant rather than a one-off patch. Statuses are reported exactly — published, under review, in preparation — and negative results are disclosed next to positive ones.</p>
+
+<div class="avail">
+  <h3>Available — remote, worldwide, outcome-based</h3>
+  <p>I would rather be paid for a defined deliverable than for hours on a clock: <strong>one PoC</strong> (verification code plus an evaluation report), <strong>one audit</strong>, <strong>one proof</strong>, <strong>one feature</strong> shipped with tests and failure-mode handling. Async-friendly across time zones; English for technical writing, calls and cross-border collaboration.</p>
+  <p class="lead" style="margin-bottom:0">Open to: cryptography and side-channel research, formal-verification contracts, security review, LLM application backends, and laboratory partnerships for the hardware-measurement stage of the SQIsign work. Happy to start with a paid trial task.</p>
+  <div class="contact">
+    <a href="mailto:tabei@ryun.jp">tabei@ryun.jp</a>
+    <a href="https://github.com/yui9696">GitHub</a>
+    <a href="https://arxiv.org/a/tabei_m_1">arXiv</a>
+    <a href="https://doi.org/10.5281/zenodo.22046587">Zenodo (DOI)</a>
+  </div>
+</div>
+
+<footer>
+  Manuscripts, certified proof bundles (DRAT / GAP), instrumented code and references available on request.<br>
+  arXiv and Zenodo records are preprints; I hold no peer-reviewed journal or conference acceptances, and the SQIsign manuscripts are self-published. Stated exactly, so you can weigh it yourself.
+</footer>
+
+</div>
+</body>
+</html>
