@@ -148,18 +148,13 @@
 
 <p class="lead">Core Cornacchia findings were assessed as sound in a technical call with the TU Graz SQIsign group (S. Sinha Roy). The field-multiplier manuscript was revised following detailed review by Ł. Chmielewski (Masaryk University). I am currently seeking a laboratory partner for the hardware-measurement stage.</p>
 
-<h2><span class="kicker">Formal verification</span>A proof submitted to Mathlib, and a verification kernel built from scratch</h2>
+<h2><span class="kicker">Formal verification</span>A proof submitted to Mathlib itself</h2>
 
 <h3>Mathlib — <a href="https://github.com/leanprover-community/mathlib4/pull/42931">leanprover-community/mathlib4 #42931</a></h3>
 <p>Simultaneous diagonalisation of two real quadratic forms, formalised in Lean 4 and submitted to the library itself. +141 lines, no <code>sorry</code>, <code>#print axioms</code> reports the three standard axioms only. A self-audit caught a wrong assumption of mine partway through — the redesign shortened the proof <em>and</em> removed three typeclass hypotheses, generalising the theorem.</p>
 
-<h3>KENSHO — a proof-certificate verification kernel</h3>
-<p>SAT/DRAT can only carry <em>unsatisfiability</em>, and most mathematical claims are not that shape. KENSHO extends one principle — <strong>re-derive the certificate a computation emitted, using a small separate program, rather than trusting its conclusion</strong> — across group theory, linear algebra, polynomials, semidefiniteness and exhaustive search.</p>
-<ul>
-  <li><strong>26 certificate types</strong>: word identities, homomorphisms, complete rewriting systems, Todd–Coxeter coset tables, group-ring product identities, exact rank and kernel, positive semidefiniteness.</li>
-  <li><strong>No floating point anywhere.</strong> Exact arithmetic over <code>Z</code>, <code>Q</code>, <code>GF(p)</code>, <code>Z/n</code>, polynomials and matrices.</li>
-  <li><strong>Generators are deliberately outside the trusted computing base.</strong> TCB held to roughly 1,300 lines, with 50 positive/negative self-tests and a mutation battery that corrupts certificates on purpose to measure where the checker is blind.</li>
-</ul>
+<h3><a href="https://github.com/yui9696/lean-portfolio">lean-portfolio</a></h3>
+<p>Further Lean 4 formalisation work, kept public and re-runnable.</p>
 
 <h2><span class="kicker">Engineering</span>Seven years shipping production systems, alone</h2>
 <ul>
