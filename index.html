@@ -148,10 +148,13 @@
 
 <p class="lead">Core Cornacchia findings were assessed as sound in a technical call with the TU Graz SQIsign group (S. Sinha Roy). The field-multiplier manuscript was revised following detailed review by Ł. Chmielewski (Masaryk University). I am currently seeking a laboratory partner for the hardware-measurement stage.</p>
 
-<h2><span class="kicker">Formal verification</span>A proof submitted to Mathlib itself</h2>
+<h2><span class="kicker">Formal verification</span>Two proofs submitted to Mathlib itself</h2>
 
 <h3>Mathlib — <a href="https://github.com/leanprover-community/mathlib4/pull/42931">leanprover-community/mathlib4 #42931</a></h3>
-<p>Simultaneous diagonalisation of two real quadratic forms, formalised in Lean 4 and submitted to the library itself. +141 lines, no <code>sorry</code>, <code>#print axioms</code> reports the three standard axioms only. A self-audit caught a wrong assumption of mine partway through — the redesign shortened the proof <em>and</em> removed three typeclass hypotheses, generalising the theorem.</p>
+<p>Simultaneous diagonalisation of two Hermitian forms, together with the generalised eigenvalue problem, formalised in Lean 4 and submitted to the library itself. 245 lines, no <code>sorry</code>, <code>#print axioms</code> reports the three standard axioms only. A self-audit caught a wrong assumption of mine partway through — the redesign shortened the proof <em>and</em> removed three typeclass hypotheses, generalising the theorem; a reviewer then asked for the statement over <code>RCLike</code>, which generalised it again.</p>
+
+<h3>Mathlib — <a href="https://github.com/leanprover-community/mathlib4/pull/43229">leanprover-community/mathlib4 #43229</a></h3>
+<p>The probability generating function <code>pgf X μ t = μ[t^X]</code> for an ℕ-valued random variable: a new 233-line file designed to sit alongside Mathlib's existing moment-generating-function API and follow its conventions rather than my own. The main theorem is that the generating function determines the law, obtained by reading the point masses off as the coefficients of a power series of radius at least one. No <code>sorry</code>; the three standard axioms only.</p>
 
 <h3><a href="https://github.com/yui9696/lean-portfolio">lean-portfolio</a></h3>
 <p>Further Lean 4 formalisation work, kept public and re-runnable.</p>
